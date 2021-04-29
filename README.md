@@ -6,3 +6,10 @@
 
  **Google Translate**
   * 200 character limit
+
+## Install
+* `git clone https://github.com/0Supa/pepega-tts.git`
+* `cd pepega-tts`
+* `npm install`
+* make a copy of `.env_template` named `.env` and add your credentials into it
+#### *the bot is not intended to run on other machines*
