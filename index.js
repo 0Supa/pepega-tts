@@ -78,7 +78,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 client.on('message', async (message) => {
     if (message.author.bot || !message.guild) return;
 
-    redis.del('kekw')
+    utils.cache.del('kekw')
     console.time('redis')
     const cacheData = await utils.cacheGet(message.guild.id)
     console.timeEnd('redis')
