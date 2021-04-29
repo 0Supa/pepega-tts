@@ -64,6 +64,7 @@ client.on('guildCreate', async (guild) => {
 
 client.on('guildDelete', async (guild) => {
     await utils.query(`DELETE FROM guilds WHERE guild_id=?`, [guild.id])
+    utils.cache.del(guild.id)
     logger.info(`Left ${guild.name}`)
 });
 
@@ -78,19 +79,12 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 client.on('message', async (message) => {
     if (message.author.bot || !message.guild) return;
 
-    utils.cache.del('kekw')
-    console.time('redis')
     const cacheData = await utils.cacheGet(message.guild.id)
-    console.timeEnd('redis')
-    console.log(cacheData)
 
-    if (false) {
+    if (cacheData) {
         message.query = JSON.parse(cacheData)
     } else {
-        console.log('Fetching from database..')
-        console.time('sql')
         const channelQuery = await utils.query(`SELECT prefix, voice, lang FROM guilds WHERE guild_id=? LIMIT 1`, [message.guild.id])
-        console.timeEnd('sql')
 
         if (!channelQuery.length) {
             await utils.query(`INSERT INTO guilds (guild_id) VALUES (?)`, [message.guild.id])
@@ -100,7 +94,7 @@ client.on('message', async (message) => {
 
         message.query = channelQuery[0]
 
-        utils.cache.set(message.guild.id, JSON.stringify({ prefix: message.query.prefix, voice: message.query.voice, lang: message.query.lang }))
+        utils.cache.setex(message.guild.id, 260000, JSON.stringify({ prefix: message.query.prefix, voice: message.query.voice, lang: message.query.lang }))
     }
 
     const prefix = message.query.prefix
