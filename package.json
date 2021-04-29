@@ -1,0 +1,24 @@
+{
+  "name": "pepega-tts",
+  "version": "1.0.0",
+  "description": "Discord TTS bot",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "chalk": "^4.1.1",
+    "discord.js": "^12.5.3",
+    "dotenv": "^8.2.0",
+    "got": "^11.8.2",
+    "mariadb": "^2.5.3",
+    "redis": "^3.1.2",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Supa",
+  "license": "ISC"
+}
