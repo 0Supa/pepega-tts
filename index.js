@@ -98,7 +98,7 @@ client.on('message', async (message) => {
 
         message.query = channelQuery[0]
 
-        utils.cache.setex(message.guild.id, 260000, JSON.stringify({ prefix: message.query.prefix, voice: message.query.voice, lang: message.query.lang }))
+        utils.cache.set(message.guild.id, JSON.stringify({ prefix: message.query.prefix, voice: message.query.voice, lang: message.query.lang }))
     }
 
     const prefix = message.query.prefix
