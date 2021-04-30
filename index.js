@@ -55,6 +55,10 @@ for (const file of commandFiles) {
 
 client.on('ready', () => {
     logger.info(`Connected to Discord (${client.user.tag})`);
+    (function activity() {
+        client.user.setActivity("'help");
+        setTimeout(activity, 3600000);
+    })();
 });
 
 client.on('guildCreate', async (guild) => {
