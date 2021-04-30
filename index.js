@@ -5,7 +5,7 @@ const cooldown = new Set();
 const mariadb = require('mariadb');
 const redis = require('redis');
 const Discord = require('discord.js');
-const client = new Discord.Client();
+const client = new Discord.Client({ allowedMentions: { parse: [] } });
 
 const fs = require('fs');
 const { logger } = require('./lib/utils/logger.js')
