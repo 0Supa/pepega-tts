@@ -4,6 +4,7 @@ let utils = {};
 const cooldown = new Set();
 const mariadb = require('mariadb');
 const redis = require('redis');
+const asyncRedis = require("async-redis");
 const Discord = require('discord.js');
 const client = new Discord.Client({ allowedMentions: { parse: [] } });
 
@@ -21,7 +22,8 @@ const pool = mariadb.createPool({
     utils.db = await pool.getConnection()
 })();
 
-utils.cache = redis.createClient(process.env.redis_port)
+const redisClient = redis.createClient(process.env.redis_port)
+utils.cache = asyncRedis.decorate(redisClient);
 
 utils.query = function (query, data = []) {
     return new Promise(async (resolve, reject) => {
@@ -33,15 +35,6 @@ utils.query = function (query, data = []) {
             console.error(err)
         }
     })
-}
-
-utils.cacheGet = function (param) {
-    return new Promise(async (resolve, reject) => {
-        utils.cache.get(param, (err, data) => {
-            if (err) reject(err);
-            resolve(data);
-        });
-    });
 }
 
 client.commands = new Discord.Collection();
@@ -68,7 +61,7 @@ client.on('guildCreate', async (guild) => {
 
 client.on('guildDelete', async (guild) => {
     await utils.query(`DELETE FROM guilds WHERE guild_id=?`, [guild.id])
-    utils.cache.del(guild.id)
+    await utils.cache.del(guild.id)
     logger.info(`Left ${guild.name}`)
 });
 
@@ -83,7 +76,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 client.on('message', async (message) => {
     if (message.author.bot || !message.guild) return;
 
-    const cacheData = await utils.cacheGet(message.guild.id)
+    const cacheData = await utils.cache.get(message.guild.id)
 
     if (cacheData) {
         message.query = JSON.parse(cacheData)
@@ -98,7 +91,7 @@ client.on('message', async (message) => {
 
         message.query = channelQuery[0]
 
-        utils.cache.set(message.guild.id, JSON.stringify({ prefix: message.query.prefix, voice: message.query.voice, lang: message.query.lang }))
+        await utils.cache.set(message.guild.id, JSON.stringify({ prefix: message.query.prefix, voice: message.query.voice, lang: message.query.lang }))
     }
 
     const prefix = message.query.prefix
