@@ -16,7 +16,7 @@ const pool = mariadb.createPool({
     user: process.env.db_user,
     password: process.env.db_pass,
     database: process.env.db_name,
-    connectionLimit: 5,
+    connectionLimit: process.env.db_connectionLimit,
 });
 
 const redisClient = redis.createClient(process.env.redis_port)
