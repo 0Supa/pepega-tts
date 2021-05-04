@@ -16,6 +16,7 @@ const pool = mariadb.createPool({
     user: process.env.db_user,
     password: process.env.db_pass,
     database: process.env.db_name,
+    connectionLimit: 5,
 });
 
 const redisClient = redis.createClient(process.env.redis_port)
@@ -24,8 +25,9 @@ utils.cache = asyncRedis.decorate(redisClient);
 utils.query = function (query, data = []) {
     return new Promise(async (resolve, reject) => {
         try {
-            utils.db = await pool.getConnection()
-            const res = await utils.db.query(query, data)
+            const conn = await pool.getConnection()
+            const res = await conn.query(query, data)
+            conn.end()
             resolve(res)
         } catch (err) {
             reject(err)
