@@ -97,7 +97,7 @@ client.on('message', async (message) => {
 
     if (!message.content.startsWith(prefix)) return;
 
-    message.args = message.content.slice(prefix.length).trim().split(/ +/);
+    message.args = message.cleanContent.slice(prefix.length).trim().split(/ +/);
     const commandName = message.args.shift().toLowerCase();
 
     const command = client.commands.get(commandName) ||
