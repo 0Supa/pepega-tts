@@ -5,11 +5,10 @@ const cooldown = new Set();
 const mariadb = require('mariadb');
 const redis = require('redis');
 const asyncRedis = require("async-redis");
-const Discord = require('discord.js');
-const client = new Discord.Client({ allowedMentions: { parse: [] } });
-
 const fs = require('fs');
-const { logger } = require('./lib/utils/logger.js')
+const logger = require('./lib/utils/logger.js')
+const ttsExtension = require('./lib/utils/ttsExtension.js')
+const Discord = require('discord.js');
 
 const pool = mariadb.createPool({
     host: process.env.db_host,
@@ -36,7 +35,10 @@ utils.query = function (query, data = []) {
     })
 }
 
+Discord.Structures.extend('Guild', ttsExtension);
 client.commands = new Discord.Collection();
+
+const client = new Discord.ExtendedClient({ allowedMentions: { parse: [] } });
 
 const commandFiles = fs.readdirSync('./lib/commands').filter(file => file.endsWith('.js'));
 
