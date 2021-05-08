@@ -36,7 +36,7 @@ utils.query = function (query, data = []) {
 }
 
 Discord.Structures.extend('Guild', ttsExtension);
-const client = new Discord.ExtendedClient({ allowedMentions: { parse: [] } });
+const client = new Discord.Client({ allowedMentions: { parse: [] } });
 client.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./lib/commands').filter(file => file.endsWith('.js'));
