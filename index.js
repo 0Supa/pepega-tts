@@ -1,42 +1,11 @@
 require('dotenv').config();
-let utils = {};
 
 const cooldown = new Set();
-const mariadb = require('mariadb');
-const redis = require('redis');
-const asyncRedis = require("async-redis");
 const fs = require('fs');
 const logger = require('./lib/utils/logger.js')
-const ttsExtension = require('./lib/utils/ttsExtension.js')
-const Discord = require('discord.js');
+const utils = require('./lib/utils/utils.js')
+const { client } = require('./lib/misc/connections.js')
 
-const pool = mariadb.createPool({
-    host: process.env.db_host,
-    user: process.env.db_user,
-    password: process.env.db_pass,
-    database: process.env.db_name,
-    connectionLimit: process.env.db_connectionLimit,
-});
-
-const redisClient = redis.createClient(process.env.redis_port)
-utils.cache = asyncRedis.decorate(redisClient);
-
-utils.query = function (query, data = []) {
-    return new Promise(async (resolve, reject) => {
-        try {
-            const conn = await pool.getConnection()
-            const res = await conn.query(query, data)
-            conn.end()
-            resolve(res)
-        } catch (err) {
-            reject(err)
-            console.error(err)
-        }
-    })
-}
-
-Discord.Structures.extend('Guild', ttsExtension);
-const client = new Discord.Client({ allowedMentions: { parse: [] } });
 client.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./lib/commands').filter(file => file.endsWith('.js'));
