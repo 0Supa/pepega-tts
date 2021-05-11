@@ -4,7 +4,7 @@ const cooldown = new Set();
 const fs = require('fs');
 const logger = require('./lib/utils/logger.js')
 const utils = require('./lib/utils/utils.js')
-const { client } = require('./lib/misc/connections.js')
+const { Discord, client } = require('./lib/misc/connections.js')
 
 client.commands = new Discord.Collection();
 
