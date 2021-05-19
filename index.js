@@ -40,7 +40,7 @@ client.on('voiceStateUpdate', (oldMember) => {
 });
 
 client.on('message', async (message) => {
-    if (message.author.bot || !message.guild) return;
+    if (message.author.bot) return;
 
     const cacheData = await utils.cache.get(message.guild.id)
 
