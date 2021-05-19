@@ -34,6 +34,21 @@ client.on('guildDelete', async (guild) => {
     logger.info(`Left ${guild.name}`)
 });
 
+client.on('voiceStateUpdate', (oldMember, newMember) => {
+    if (newMember && !newMember.guild.me.voice) {
+        newMember.guild.ttsPlayer.queue = [];
+        console.log('cleared queue')
+    }
+    else {
+        console.log(oldMember)
+        if (oldMember.channelID !== oldMember.guild.me.voice.channelID || !oldMember.channel || oldMember.bot) return;
+        if (!oldMember.channel.members.filter(a => !a.user.bot).size) {
+            oldMember.channel.leave()
+            logger.info(`Left ${oldMember.channel.name} in ${oldMember.guild.name} due to members size`);
+        }
+    }
+});
+
 client.on('message', async (message) => {
     if (message.author.bot || !message.guild) return;
 
