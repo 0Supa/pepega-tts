@@ -39,8 +39,8 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         newMember.guild.ttsPlayer.queue = [];
         console.log('cleared queue')
     }
-    else {
-        if (!oldMember.channel || oldMember.channelID !== oldMember.guild.me.voice.channelID) return;
+    else if (oldMember) {
+        if (oldMember.channelID !== oldMember.guild.me.voice.channelID) return;
         if (!oldMember.channel.members.filter(a => !a.user.bot).size) {
             oldMember.channel.leave()
             logger.info(`Left ${oldMember.channel.name} in ${oldMember.guild.name} due to members size`);
