@@ -40,8 +40,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         console.log('cleared queue')
     }
     else {
-        console.log(oldMember)
-        if (oldMember.channelID !== oldMember.guild.me.voice.channelID || !oldMember.channel || oldMember.bot) return;
+        if (oldMember.bot || !oldMember.channel || oldMember.channelID !== oldMember.guild.me.voice.channelID) return;
         if (!oldMember.channel.members.filter(a => !a.user.bot).size) {
             oldMember.channel.leave()
             logger.info(`Left ${oldMember.channel.name} in ${oldMember.guild.name} due to members size`);
