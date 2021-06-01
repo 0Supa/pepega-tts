@@ -8,13 +8,12 @@
   },
   "dependencies": {
     "@discordjs/opus": "^0.5.0",
-    "async-redis": "^2.0.0",
     "chalk": "^4.1.1",
     "discord.js-light": "^3.5.11",
     "dotenv": "^10.0.0",
     "got": "^11.8.2",
+    "ioredis": "^4.27.3",
     "mariadb": "^2.5.3",
-    "redis": "^3.1.2",
     "winston": "^3.3.3"
   },
   "devDependencies": {},
