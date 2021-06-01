@@ -30,7 +30,7 @@ client.on('guildCreate', async (guild) => {
 
 client.on('guildDelete', async (guild) => {
     await utils.query(`DELETE FROM guilds WHERE guild_id=?`, [guild.id])
-    await utils.cache.del(guild.id)
+    await utils.redis.del(guild.id)
     logger.info(`Left ${guild.name}`)
 });
 
@@ -42,7 +42,7 @@ client.on('voiceStateUpdate', (oldMember) => {
 client.on('message', async (message) => {
     if (message.author.bot) return;
 
-    const cacheData = await utils.cache.get(message.guild.id)
+    const cacheData = await utils.redis.get(message.guild.id)
 
     if (cacheData) message.query = JSON.parse(cacheData)
     else {
@@ -56,7 +56,7 @@ client.on('message', async (message) => {
 
         message.query = channelQuery[0]
 
-        await utils.cache.set(message.guild.id, JSON.stringify({ prefix: message.query.prefix, voice: message.query.voice, lang: message.query.lang }))
+        utils.redis.set(message.guild.id, JSON.stringify({ prefix: message.query.prefix, voice: message.query.voice, lang: message.query.lang }))
     }
 
     const prefix = message.query.prefix
