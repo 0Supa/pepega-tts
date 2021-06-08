@@ -5,7 +5,7 @@
   * 600 character limit
 
  **Google Translate**
-  * 200 character limit
+  * 600 character limit
 
 ## I just want to add the bot in my Discord server
 [Click here](https://discord.com/oauth2/authorize?client_id=837274404551524372&scope=bot&permissions=0) to invite the bot in your server 😀
