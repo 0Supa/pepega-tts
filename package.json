@@ -13,7 +13,7 @@
     "dotenv": "^10.0.0",
     "got": "^11.8.2",
     "ioredis": "^4.27.6",
-    "mariadb": "^2.5.3",
+    "mariadb": "^2.5.4",
     "winston": "^3.3.3"
   },
   "devDependencies": {},
