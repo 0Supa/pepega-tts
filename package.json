@@ -7,13 +7,13 @@
     "lib": "lib"
   },
   "dependencies": {
-    "@discordjs/opus": "^0.5.0",
+    "@discordjs/opus": "^0.5.3",
     "chalk": "^4.1.1",
     "discord.js-light": "^3.5.11",
     "dotenv": "^10.0.0",
     "got": "^11.8.2",
-    "ioredis": "^4.27.5",
-    "mariadb": "^2.5.3",
+    "ioredis": "^4.27.6",
+    "mariadb": "^2.5.4",
     "winston": "^3.3.3"
   },
   "devDependencies": {},
