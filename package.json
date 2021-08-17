@@ -8,15 +8,18 @@
   },
   "dependencies": {
     "@discordjs/opus": "^0.5.3",
+    "bufferutil": "^4.0.3",
     "chalk": "^4.1.2",
     "discord.js-light": "^4.1.1",
     "dotenv": "^10.0.0",
+    "erlpack": "github:discord/erlpack",
     "got": "^11.8.2",
     "ioredis": "^4.27.7",
     "mariadb": "^2.5.4",
-    "winston": "^3.3.3"
+    "utf-8-validate": "^5.0.5",
+    "winston": "^3.3.3",
+    "zlib-sync": "^0.1.7"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
