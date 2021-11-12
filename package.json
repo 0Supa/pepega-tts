@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "dependencies": {
-    "@discordjs/opus": "^0.5.3",
+    "@discordjs/opus": "^0.7.0",
     "bufferutil": "^4.0.3",
     "chalk": "^4.1.2",
     "discord.js-light": "^4.1.1",
