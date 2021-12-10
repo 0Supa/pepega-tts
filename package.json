@@ -13,7 +13,7 @@
     "discord.js-light": "^4.1.1",
     "dotenv": "^10.0.0",
     "erlpack": "github:discord/erlpack",
-    "got": "^11.8.2",
+    "got": "^12.0.0",
     "ioredis": "^4.27.7",
     "mariadb": "^2.5.4",
     "utf-8-validate": "^5.0.5",
