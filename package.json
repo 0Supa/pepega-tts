@@ -1,28 +1,14 @@
 {
-  "name": "pepega-tts",
-  "version": "1.0.0",
-  "description": "Discord TTS bot",
-  "main": "index.js",
-  "directories": {
-    "lib": "lib"
-  },
   "dependencies": {
-    "@discordjs/opus": "^0.5.3",
-    "bufferutil": "^4.0.3",
-    "chalk": "^4.1.2",
-    "discord.js-light": "^4.1.1",
-    "dotenv": "^10.0.0",
+    "@discordjs/voice": "^0.7.5",
+    "bufferutil": "^4.0.5",
+    "discord.js": "^13.3.1",
     "erlpack": "github:discord/erlpack",
-    "got": "^11.8.2",
-    "ioredis": "^4.27.7",
-    "mariadb": "^2.5.4",
-    "utf-8-validate": "^5.0.5",
+    "ioredis": "^4.28.2",
+    "libsodium-wrappers": "^0.7.9",
+    "mariadb": "^2.5.5",
+    "utf-8-validate": "^5.0.7",
     "winston": "^3.3.3",
     "zlib-sync": "^0.1.7"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Supa",
-  "license": "ISC"
+  }
 }
