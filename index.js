@@ -23,6 +23,11 @@ for (const file of commandFiles) {
     }
 }
 
+process.on('unhandledRejection', error => {
+    if (error.message === 'Missing Permissions') return
+    console.error(error);
+});
+
 client.on('ready', () => {
     logger.info(`Connected to Discord (${client.user.tag})`);
     client.user.setActivity(";help");
