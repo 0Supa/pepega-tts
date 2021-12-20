@@ -1,4 +1,4 @@
-const { Client, Intents, Collection } = require('discord.js')
+const { Client, Intents } = require('discord.js')
 const client = new Client({
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_VOICE_STATES],
     allowedMentions: { parse: [] },
@@ -11,8 +11,8 @@ const fs = require('fs')
 const logger = require('./lib/utils/logger.js')
 const utils = require('./lib/utils/utils.js')
 
-client.commands = new Collection();
-client.aliases = new Collection();
+client.commands = new Map();
+client.aliases = new Map();
 const cooldown = new Set();
 
 const commandFiles = fs.readdirSync('./lib/commands').filter(file => file.endsWith('.js'));
