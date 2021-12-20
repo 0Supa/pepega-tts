@@ -1,5 +1,9 @@
 const { Client, Intents, Collection } = require('discord.js')
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_VOICE_STATES] })
+const client = new Client({
+    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_VOICE_STATES],
+    allowedMentions: { parse: [] },
+})
+
 const { getVoiceConnection } = require('@discordjs/voice');
 
 const config = require('./config.json')
