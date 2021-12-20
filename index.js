@@ -38,7 +38,8 @@ client.on('ready', () => {
 });
 
 client.on('guildCreate', async (guild) => {
-    await utils.query(`INSERT INTO guilds (guild_id) VALUES (?)`, [guild.id])
+    const { prefix, voice, lang } = config.defaultValues
+    await utils.query(`INSERT INTO guilds (guild_id, prefix, voice, lang) VALUES (?, ?, ?, ?)`, [guild.id, prefix, voice, lang])
     logger.info(`Joined ${guild.name}`)
 });
 
@@ -66,7 +67,7 @@ client.on('messageCreate', async (message) => {
         const channelQuery = await utils.query(`SELECT prefix, voice, lang FROM guilds WHERE guild_id=? LIMIT 1`, [message.guild.id])
 
         if (!channelQuery.length) {
-            const { prefix, voice, lang } = config.defaultConfig
+            const { prefix, voice, lang } = config.defaultValues
             await utils.query(`INSERT INTO guilds (guild_id, prefix, voice, lang) VALUES (?, ?, ?, ?)`, [message.guild.id, prefix, voice, lang])
             message.query = { prefix, voice, lang }
         } else message.query = channelQuery[0]
