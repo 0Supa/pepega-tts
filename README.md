@@ -16,16 +16,14 @@
 | Command | Description | Aliases | Cooldown |
 |:---:|---|---|---|
 | **;help** | DM's you the command list | commands, cmds | 8s |
-| **;voices** | DM's you the Polly TTS supported voices |  | 8s |
+| **;voices** | sends a link to the Polly TTS supported voices |  | 8s |
 | **;langs** | DM's you the Google TTS supported languages | languages | 8s |
-| **;polly** | send an Amazon Polly TTS message in your voice channel | p | 1s |
-| **;say** | send a Google TTS message in your voice channel | s, g | 1s |
+| **;tts** | send a TTS message in your current voice channel | polly, p, google, g | 1s |
 | **;voice** | changes the guild Polly TTS voice |  | 5s |
 | **;lang** | changes the guild Google TTS language |  | 5s |
 | **;join** | joins your voice channel | connect | 4s |
-| **;leave** | leaves the current voice channel | disconnect | 3s |
-| **;skip** | skips the current playing TTS |  | 2s |
-| **;stop** | skips all the queued TTS messages | skipall | 2s |
+| **;leave** | leaves the current voice channel | disconnect | 4s |
+| **;skip** | skips the current playing TTS | stop, skipall | 2s |
 | **;prefix** | changes the bot guild's prefix | pepegaprefix | 7s |
 | **;ping** | pong! 🏓 | pong, pyng, dink | 3s |
 
