@@ -8,7 +8,7 @@
         "database": "pepega_tts",
         "connectionLimit": 5
     },
-    "defaultConfig": {
+    "defaultValues": {
         "prefix": ";",
         "voice": "Brian",
         "lang": "en"
