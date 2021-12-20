@@ -35,4 +35,4 @@
 * `cd pepega-tts`
 * `npm install`
 * make a copy of `config_template.json` named `config.json` and add your credentials into it
-* **the bot requires a database, you'll either need to create a MariaDB Database and import the tables from the [schema](schema.sql), or ajust the code yourself**
+* **the bot requires a database and a redis server, you'll either need to create a Redis server and a MariaDB Database and import the tables from the [schema](schema.sql), or adjust the code yourself**
