@@ -6,7 +6,7 @@
     "erlpack": "github:discord/erlpack",
     "ioredis": "^4.28.2",
     "libsodium-wrappers": "^0.7.9",
-    "mariadb": "^2.5.5",
+    "mariadb": "^3.0.0",
     "utf-8-validate": "^5.0.7",
     "winston": "^3.3.3",
     "zlib-sync": "^0.1.7"
