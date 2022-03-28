@@ -4,7 +4,7 @@
     "bufferutil": "^4.0.5",
     "discord.js": "^13.3.1",
     "erlpack": "github:discord/erlpack",
-    "ioredis": "^4.28.2",
+    "ioredis": "^5.0.1",
     "libsodium-wrappers": "^0.7.9",
     "mariadb": "^2.5.5",
     "utf-8-validate": "^5.0.7",
