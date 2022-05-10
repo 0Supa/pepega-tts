@@ -25,7 +25,6 @@ DROP TABLE IF EXISTS `guilds`;
 CREATE TABLE `guilds` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `guild_id` varchar(255) NOT NULL,
-  `prefix` varchar(15) NOT NULL DEFAULT ';',
   `voice` varchar(255) NOT NULL DEFAULT 'Brian',
   `lang` varchar(50) NOT NULL DEFAULT 'en',
   PRIMARY KEY (`id`)

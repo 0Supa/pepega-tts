@@ -43,8 +43,8 @@ client.on('ready', async () => {
 });
 
 client.on('guildCreate', async (guild) => {
-    const { prefix, voice, lang } = config.defaultValues
-    await utils.query(`INSERT INTO guilds (guild_id, prefix, voice, lang) VALUES (?, ?, ?, ?)`, [guild.id, prefix, voice, lang])
+    const { voice, lang } = config.defaultValues
+    await utils.query(`INSERT INTO guilds (guild_id, voice, lang) VALUES (?, ?, ?)`, [guild.id, voice, lang])
     logger.info(`Joined ${guild.name}`)
 });
 
@@ -69,15 +69,14 @@ client.on('interactionCreate', async (interaction) => {
 
     if (cacheData) interaction.query = JSON.parse(cacheData)
     else {
-        const channelQuery = await utils.query(`SELECT prefix, voice, lang FROM guilds WHERE guild_id=? LIMIT 1`, [interaction.guild.id])
+        const channelQuery = await utils.query(`SELECT voice, lang FROM guilds WHERE guild_id=? LIMIT 1`, [interaction.guild.id])
 
         if (!channelQuery.length) {
-            const { prefix, voice, lang } = config.defaultValues
-            await utils.query(`INSERT INTO guilds (guild_id, prefix, voice, lang) VALUES (?, ?, ?, ?)`, [interaction.guild.id, prefix, voice, lang])
-            interaction.query = { prefix, voice, lang }
+            await utils.query(`INSERT INTO guilds (guild_id, voice, lang) VALUES (?, ?, ?)`, [interaction.guild.id, voice, lang])
+            interaction.query = { voice, lang }
         } else interaction.query = channelQuery[0]
 
-        await utils.redis.set(`pt:guild:${interaction.guild.id}`, JSON.stringify({ prefix: interaction.query.prefix, voice: interaction.query.voice, lang: interaction.query.lang }))
+        await utils.redis.set(`pt:guild:${interaction.guild.id}`, JSON.stringify({ voice: interaction.query.voice, lang: interaction.query.lang }))
     }
 
     const command = client.commands.get(interaction.commandName)
