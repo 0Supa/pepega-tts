@@ -70,7 +70,7 @@ client.on('messageCreate', async (message) => {
     if (!message.content.toLowerCase().startsWith(data.prefix)) return
     if (cooldown.has(`old_${message.guild.id}`)) return
 
-    message.args = message.content.slice(prefix.length).trim().split(/ +/)
+    message.args = message.content.slice(data.prefix.length).trim().split(/ +/)
 
     const oldCommands = ['help', 'tts', 'polly', 'p', 'google', 'g']
     const commandName = message.args.shift().toLowerCase()
