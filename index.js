@@ -28,7 +28,7 @@ for (const file of commandFiles) {
 
 client.on('ready', async () => {
     logger.info(`Connected to Discord (${client.user.tag})`);
-    client.user.setActivity(";help");
+    client.user.setActivity("/help");
 
     try {
         logger.info('Refreshing Discord slash commands');
