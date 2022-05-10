@@ -65,7 +65,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
 
-    const data = await utils.redis.get(`pt:guild:${message.guild.id}`)
+    const data = JSON.parse(await utils.redis.get(`pt:guild:${message.guild.id}`))
     if (!data) return
     if (!message.content.toLowerCase().startsWith(data.prefix)) return
     if (cooldown.has(`old_${message.guild.id}`)) return
