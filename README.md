@@ -15,14 +15,14 @@
 
 ## Command list
 | Command | Description | Cooldown |
-|:---:|---|---|---|
+|:---:|---|---|
 | **/help** | DM's you the command list | 8s |
 | **/voices** | sends a link to the Polly TTS supported voices | 8s |
 | **/langs** | DM's you the Google TTS supported languages | 8s |
 | **/(polly, google)** | send a Google/Polly TTS message in your current voice channel | 1s |
 | **/voice** | changes the guild Polly TTS voice | 5s |
 | **/lang** | changes the guild Google TTS language | 5s |
-| **/join** | joins your voice channel | connect | 4s |
+| **/join** | joins your voice channel | 4s |
 | **/leave** | leaves the current voice channel | 4s |
 | **/skip** | skips the current playing TTS | 2s |
 | **/ping** | pong! 🏓 | 3s |
