@@ -62,29 +62,6 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         !oldMember.channel.members.filter(a => !a.user.bot).size) return getVoiceConnection(oldMember.guild.id)?.destroy()
 });
 
-client.on('messageCreate', async (message) => {
-    if (message.author.bot) return;
-
-    const data = JSON.parse(await utils.redis.get(`pt:guild:${message.guild.id}`))
-    if (!data) return
-    if (!message.content.toLowerCase().startsWith(data.prefix)) return
-    if (cooldown.has(`old_${message.guild.id}`)) return
-
-    message.args = message.content.slice(data.prefix.length).trim().split(/ +/)
-
-    const oldCommands = ['help', 'tts', 'polly', 'p', 'google', 'g']
-    const commandName = message.args.shift().toLowerCase()
-
-    if (!oldCommands.includes(commandName)) return;
-
-    cooldown.add(`old_${message.guild.id}`);
-    setTimeout(() => {
-        cooldown.delete(`old_${message.guild.id}`);
-    }, 30000);
-
-    message.reply("🎉 Pepega TTS has migrated to Discord Slash Commands\nPlease type slash `/` to use all the TTS commands\n\n* If you don't see any commands please contact your Server Manager to add the bot again, using the \"Add to Server\" button when clicking on the bot's Discord profile")
-});
-
 client.on('interactionCreate', async (interaction) => {
     if (!interaction.isCommand()) return;
 
