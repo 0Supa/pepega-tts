@@ -3,7 +3,7 @@
     "@discordjs/rest": "^0.5.0",
     "@discordjs/voice": "^0.10.0",
     "bufferutil": "^4.0.5",
-    "discord-api-types": "^0.33.4",
+    "discord-api-types": "^0.37.5",
     "discord.js": "^13.3.1",
     "erlpack": "github:discord/erlpack",
     "ioredis": "^5.0.4",
