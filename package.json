@@ -9,7 +9,7 @@
     "ioredis": "^5.0.4",
     "libsodium-wrappers": "^0.7.9",
     "mariadb": "^3.0.0",
-    "utf-8-validate": "^5.0.7",
+    "utf-8-validate": "^6.0.3",
     "winston": "^3.3.3",
     "zlib-sync": "^0.1.7"
   }
